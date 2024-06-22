@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HW1_mobile_dev</string>
+    <style name="CircleShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
+
