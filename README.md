@@ -15,6 +15,6 @@ Game Features:
 - Lives System: Begin with three lives; each collision deducts one life. The game replenishes three lives after exhausting the initial set, enabling continuous play.
 - Endless Gameplay: Engage in an infinite gaming experience where the challenge escalates progressively, ensuring continuous excitement.
 
-Video example - 
+Video example:
 
 Gameplay video link: https://github.com/IlanKal/HW1_mobile_dev/blob/main/Video_example.mp4
