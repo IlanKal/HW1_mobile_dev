@@ -1,5 +1,7 @@
 package dev.IlanKal.hw1_mobile_dev.Logic;
 
+import java.util.Random;
+
 public class GameController {
     private final int matrixRows = 5;
     private final int matrixCols = 3;
@@ -9,6 +11,7 @@ public class GameController {
     private int life;
     private int amountOfDisqualifications = 0;
     private String[][] matrix;
+    private int[] lastTwoMeteorPositions = {-1, -1};
 
     public GameController(int life) {
         this.life = life;
@@ -106,8 +109,31 @@ public class GameController {
     }
 
     private void putRandomNum() {
-        int randomNum = (int) (Math.random() * getMatrixCols()); // get random number between 0 to 3
+        Random random = new Random();
+        int randomNum;
+
+        if (lastTwoMeteorPositions[0] == -1) {
+            // First row
+            randomNum = random.nextInt(getMatrixCols());
+        } else if (lastTwoMeteorPositions[1] == -1) {
+            // Second row
+            randomNum = random.nextInt(getMatrixCols());
+        } else {
+            // Third row and beyond
+            if (lastTwoMeteorPositions[0] != lastTwoMeteorPositions[1]) {
+                // Ensure the new position is one of the last two positions
+                randomNum = random.nextBoolean() ? lastTwoMeteorPositions[0] : lastTwoMeteorPositions[1];
+            } else {
+                // Any position is allowed
+                randomNum = random.nextInt(getMatrixCols());
+            }
+        }
+
         getMatrix()[0][randomNum] = getFLAMING_METEOR();
+
+        // Update last two meteor positions
+        lastTwoMeteorPositions[1] = lastTwoMeteorPositions[0];
+        lastTwoMeteorPositions[0] = randomNum;
     }
 
     public boolean checkCollision() {
